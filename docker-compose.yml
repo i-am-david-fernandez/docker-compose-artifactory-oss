@@ -1,0 +1,25 @@
+## ======== ======== ======== ======== ======== ======== ======== ========
+##
+## <DF> Based on image:
+##      -https://www.jfrog.com/confluence/display/RTF/Running+with+Docker
+
+## ======== ======== ======== ======== ======== ======== ======== ========
+## Artifactory
+artifactory:
+  image: docker.bintray.io/jfrog/artifactory-oss
+
+  ## <DF> Set this as required.
+  restart: always
+
+  ports:
+    - "8060:8081"
+    # - "8061:80"
+    # - "8062:443"
+
+  volumes:
+    ## Host-persistent data, logs, config etc.
+    - ./artifactory.data/data:/var/opt/jfrog/artifactory/data
+    - ./artifactory.data/logs:/var/opt/jfrog/artifactory/logs
+    - ./artifactory.data/backup:/var/opt/jfrog/artifactory/backup
+    - ./artifactory.data/etc:/var/opt/jfrog/artifactory/etc
+
